@@ -2,7 +2,6 @@
 
 ## Overview
 
-* User clicks Pay With Card button.
 * User completes form, sending information to Stripe.
 * Stripe sends back token.
 * POST request is sent with token id to server.
@@ -19,44 +18,15 @@
 - The Secret Key will be used on the back end, so it does not need "REACT_APP_". Ours will be called STRIPE_PRIVATE_KEY here.
 
 ## **3. Install** 
-#### **Install `stripe` and `react-stripe-checkout`**: 
+#### **Install `react-stripe-elements`**: 
 ```sh
-npm install stripe react-stripe-checkout
+npm install react-stripe-elements
 ```
 
 
 ## **4. Front end**
 
-#### **Import `react-stripe-checkout`**
-  ```js
-  import StripeCheckout from 'react-stripe-checkout';
-  ```
-
-#### **Render Stripe Checkout**
-- In the `stripeKey` prop, pass in the Publishable Key stored in the .env file.
-- Pass in a charge amount to the `amount` prop. In the App.js file, we are passing in 999 cents ($9.99) every time, but the example below shows how you might store the amount in a variable which you then pass in.
-- In the `token` prop, pass in a method that will be called when the used click the Pay button. This method will accept a token from Stripe and the post a payment.
-  ```js
-  <StripeCheckout
-    token={this.onToken}
-    stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}
-    amount={this.state.amount}
-  />
-  ```
-
-#### **Write POST method**
-- Write a method to accept a token from Stripe.
-- Use axios to make a POST request to our server, passing back the token and the payment amount in the request body.
-- Notice the two console.logs here. When the user clicks the button and enters information for a payment, two logs should appear in the console. The first is the token created after the used finished with the Stripe form. The second log appears a few moments later after the charge is approved; this charge is logged in the console when it gets back from our server.
-  ```js
-  onToken = token => {
-    console.log('token', token);
-    token.card = void 0;
-    const { amount } = this.state
-    axios.post('/api/payment', { token, amount })
-      .then(charge => { console.log('charge response', charge.data) }););
-  }
-  ```
++++ Finish these notes
 
 ## **5. Back end**
 
@@ -98,7 +68,6 @@ npm install stripe react-stripe-checkout
 
 ## Notes
 
-  - This demo was based on [Joe Blank's demo](https://github.com/joeblank/react-stripe).
-  - [Stripe Checkout (simple) docs](https://stripe.com/docs/checkout#integration-simple)
-  - [`react-stripe-elements` NPM docs](https://github.com/stripe/react-stripe-elements#setting-up-your-payment-form-injectstripe)
+  - [Stripe Elements docs](https://stripe.com/docs/stripe-js/elements/quickstart)
+  - [`react-stripe-elements` NPM docs](https://github.com/stripe/react-stripe-elements)
   
