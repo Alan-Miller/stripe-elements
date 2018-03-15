@@ -21,7 +21,7 @@ class CheckoutForm extends React.Component {
           <label>
             <CardElement style={{ base: { fontSize: '24px', color: 'red', '::placeholder': { color: 'yellow' } } }} />
           </label>
-          <button>Confirm order</button>
+          <button className="orderButton">Place order</button>
         </form>
       </div>
     );
